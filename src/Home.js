@@ -1,14 +1,12 @@
 import React from 'react';
-import { useGlobleContext } from './context';
+import Movie from './Movie';
+import Search from './Search';
 
 const Home = () => {
-
-    const name = useGlobleContext();
-
     return(
-        <>
-            <h1>My Home Page</h1>
-            <p>{name}</p>
+        <>  
+            <Search/>
+            <Movie/>
         </>
     )
 }

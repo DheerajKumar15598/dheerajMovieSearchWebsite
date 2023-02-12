@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 import Error from './Error';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import Movie from './Movie';
 
 function App() {
 
@@ -34,6 +35,10 @@ function App() {
         {
           path: "movie/:id",
           element: <SingleMovie/>
+        },
+        {
+          path: "movie",
+          element: <Movie/>
         },
       ]
     },
