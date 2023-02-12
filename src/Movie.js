@@ -3,19 +3,28 @@ import { NavLink } from 'react-router-dom';
 import { useGlobleContext } from './context'
 
 const Movie = () => {
-    const {movie} = useGlobleContext();
+    const {movie, isLoading} = useGlobleContext();
+
+    if(isLoading){
+        return(
+            <div>
+            <div className='loading'>Loading...</div>
+            </div>
+        );
+    }
 
   return (
     <section className='movie-page'>
-        <div className='grid grid-4-col'>
+        <div className='container grid grid-4-col'>
         {
             movie.map((currMovie, index) => {
                 const { imdbID, Title, Poster } = currMovie;
+                const movieName = Title.substring(0, 20);
                 return(
-                    <NavLink to={`movie/${imdbID}`}>
+                    <NavLink to={`movie/${imdbID}`} key={imdbID}>
                         <div className='card'>
                             <div className='card-info'>
-                                <h2>{Title}</h2>
+                                <h2>{movieName.length > 15 ? `${movieName}...` : movieName}</h2>
                                 <img src={Poster} alt={imdbID} />
                             </div>
                         </div>
