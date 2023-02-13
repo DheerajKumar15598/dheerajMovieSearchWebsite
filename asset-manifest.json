@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/dheerajMovieSearchWebsite/static/css/main.e4f445f7.css",
+    "main.js": "/dheerajMovieSearchWebsite/static/js/main.9c547fab.js",
+    "index.html": "/dheerajMovieSearchWebsite/index.html",
+    "main.e4f445f7.css.map": "/dheerajMovieSearchWebsite/static/css/main.e4f445f7.css.map",
+    "main.9c547fab.js.map": "/dheerajMovieSearchWebsite/static/js/main.9c547fab.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e4f445f7.css",
+    "static/js/main.9c547fab.js"
+  ]
+}
