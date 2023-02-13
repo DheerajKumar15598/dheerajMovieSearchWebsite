@@ -1,8 +1,6 @@
 import './App.css';
 import Home from './Home';
 import SingleMovie from './SingleMovie';
-import NavBar from './NavBar';
-import Footer from './Footer';
 import Error from './Error';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Movie from './Movie';
@@ -12,9 +10,7 @@ function App() {
   const Layout = () => {
     return (
       <div className="app">
-        <NavBar/>
         <Outlet/>
-        <Footer/>
       </div>
     )
   }

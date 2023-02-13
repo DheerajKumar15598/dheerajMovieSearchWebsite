@@ -17,7 +17,7 @@ const Movie = () => {
     <section className='movie-page'>
         <div className='container grid grid-4-col'>
         {
-            movie.map((currMovie, index) => {
+            movie.map((currMovie) => {
                 const { imdbID, Title, Poster } = currMovie;
                 const movieName = Title.substring(0, 20);
                 return(

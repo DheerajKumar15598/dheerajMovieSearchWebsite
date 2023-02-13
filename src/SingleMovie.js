@@ -1,39 +1,68 @@
+import React, {useState, useEffect} from "react";
 import { NavLink, useParams } from "react-router-dom";
-import useFetch from "./useFetch";
+import {API_URL} from "./context"
 
 const SingleMovie = () => {
-  const { id } = useParams();
-  console.log(id);
+  const {id} = useParams()
 
-  const { isLoading, movie, isError } = useFetch(`&i=${id}`);
+  const [isLoading, setIsLoading, setIsError] = useState(true)
+    const [movie, setMovie] = useState("")
 
-  if (isLoading) {
-    return (
-      <section className="movie-section ">
-        <div className="loading">Loading....</div>;
-      </section>
-    );
-  }
+    const getMovies = async (url) => {
+      setIsLoading(true);
+        try{
+            const res = await fetch(url)
+            const data = await res.json();
+            console.log(data);
 
-  return (
-    <section className="movie-section">
-      <div className="movie-card">
-        <figure>
-          <img src={movie.Poster} alt="" />
-        </figure>
-        <div className="card-content">
-          <p className="title">{movie.Title}</p>
-          <p className=""></p>
-          <p className="card-text">{movie.Released}</p>
-          <p className="card-text">{movie.Genre}</p>
-          <p className="card-text">{movie.imdbRating} / 10</p>
-          <p className="card-text">{movie.Country}</p>
-          <NavLink to="/" className="back-btn">
-            Go Back
-          </NavLink>
+            if(data.Response === 'True'){
+                setIsLoading(false);
+                setMovie(data)
+                setIsError({
+                    show: false,
+                    msg: "",
+                })
+            }
+          }catch(error){
+            console.log(error)
+        }
+    }
+
+    useEffect(()=>{
+        let timeOut = setTimeout(()=>{
+            getMovies(`${API_URL}&i=${id}`)
+        }, 500)
+
+        return () => clearTimeout(timeOut);
+    },[id])
+
+    if(isLoading){
+      return(
+        <div className="movie-section">
+          <div className="loading">Loading...</div>
         </div>
-      </div>
-    </section>
+      )
+    }
+
+    return (
+        <section className="movie-section">
+          <div className="movie-card">
+            <figure>
+              <img src={movie.Poster} alt="" />
+            </figure>
+
+            <div className="card-content">
+              <p className="title">{movie.Title}</p>
+              <p className="card-text">{movie.Released}</p>
+              <p className="card-text">{movie.Genre}</p>
+              <p className="card-text">{movie.imdbRating}</p>
+              <p className="card-text">{movie.Country}</p>
+              <NavLink to="/" className="back-btn">Go Back</NavLink>
+            </div>
+
+          </div>
+        </section>
+
   );
 };
 
